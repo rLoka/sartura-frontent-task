@@ -1,3 +1,5 @@
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
+
 var path = require('path')
 var webpack = require('webpack')
 
@@ -10,6 +12,13 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.less$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'less-loader']
+        })
+      },
       {
         test: /\.vue$/,
         loader: 'vue-loader',
@@ -33,6 +42,9 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new ExtractTextPlugin('style.css')
+  ],
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.esm.js'
