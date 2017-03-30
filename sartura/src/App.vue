@@ -14,5 +14,11 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less">
+@nice-blue: #5B83AD;
+@light-blue: @nice-blue + #111;
+
+#header {
+  color: @light-blue;
+}
 </style>
